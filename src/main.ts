@@ -5,6 +5,9 @@ import { AppModule } from './app.module';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
+  app.enableCors(); //Para habilitar CORS y acceder desde cualquier dominio.
+                    //Para hacer mas segura mi aplicación, sólo debería habilitar los dominios desde donde se que van a llamar al backend
+
   //Antes de usar esto: npm i class-validator class-transformer
   //Para poder tener validaciones por defecto en los "dtos"
   app.useGlobalPipes( 
@@ -15,5 +18,6 @@ async function bootstrap() {
    );
 
   await app.listen(3000);
+  console.log('Servidor activo y ejecutando en puerto 3000...')
 }
 bootstrap();
